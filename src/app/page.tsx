@@ -15,6 +15,30 @@ export default function Home() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Fixed particle positions to avoid Math.random() during build
+  const particles = [
+    { left: '10%', top: '20%', delay: '0s' },
+    { left: '20%', top: '80%', delay: '0.3s' },
+    { left: '30%', top: '40%', delay: '0.6s' },
+    { left: '40%', top: '60%', delay: '0.9s' },
+    { left: '50%', top: '30%', delay: '1.2s' },
+    { left: '60%', top: '70%', delay: '1.5s' },
+    { left: '70%', top: '50%', delay: '0.2s' },
+    { left: '80%', top: '90%', delay: '0.5s' },
+    { left: '90%', top: '10%', delay: '0.8s' },
+    { left: '15%', top: '55%', delay: '1.1s' },
+    { left: '25%', top: '25%', delay: '1.4s' },
+    { left: '35%', top: '75%', delay: '1.7s' },
+    { left: '45%', top: '15%', delay: '0.1s' },
+    { left: '55%', top: '85%', delay: '0.4s' },
+    { left: '65%', top: '35%', delay: '0.7s' },
+    { left: '75%', top: '65%', delay: '1.0s' },
+    { left: '85%', top: '45%', delay: '1.3s' },
+    { left: '95%', top: '95%', delay: '1.6s' },
+    { left: '5%', top: '5%', delay: '0.2s' },
+    { left: '95%', top: '45%', delay: '0.5s' },
+  ];
+
   return (
     <div className="min-h-screen">
       {/* Hero Section with Parallax */}
@@ -31,14 +55,14 @@ export default function Home() {
         
         {/* Animated particles */}
         <div className="absolute inset-0 overflow-hidden">
-          {[...Array(20)].map((_, i) => (
+          {particles.map((particle, i) => (
             <div
               key={i}
               className="absolute w-2 h-2 bg-amber-400 rounded-full opacity-30 animate-pulse"
               style={{
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-                animationDelay: `${Math.random() * 2}s`,
+                left: particle.left,
+                top: particle.top,
+                animationDelay: particle.delay,
               }}
             />
           ))}
